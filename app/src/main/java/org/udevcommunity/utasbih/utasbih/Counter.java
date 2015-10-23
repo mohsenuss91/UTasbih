@@ -18,7 +18,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
+import android.os.Vibrator;
 /**
  * Counter
  *
@@ -36,7 +36,7 @@ public class Counter extends Activity
     TextView counterView = null;       // TextView of the counter 'used to display the number in counter'
     Button incrementCounter = null;     // Incrementing Button for the counter
     LinearLayout principalLayout = null;   // principal layout 'used to set the color when rich 33,66,99,100 etc ...
-
+    Vibrator vibr_tasbih = (Vibrator) this.context.getSystemService(Context.VIBRATOR_SERVICE);  // create vibr_tasbih objet from vibrator class
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -104,19 +104,19 @@ public class Counter extends Activity
         // Conditions to set the Text+Backgtound when rich 33,66,99,100 .
         if (this.counter == 33)
         {
-            //TODO vibrate function
+            vibr_tasbih.vibrate(500); // Vibrate for 500 milliseconds 
             tasbihText.setText("الحمد لله");
             principalLayout.setBackgroundColor(Color.rgb(103, 58, 183));
         }
         else if (this.counter == 66)
         {
-            //TODO vibrate function
+            vibr_tasbih.vibrate(500); // Vibrate for 500 milliseconds 
             tasbihText.setText("الله أكبر");
             principalLayout.setBackgroundColor(Color.rgb(255, 152, 0));
         }
         else if (this.counter == 99)
         {
-            //TODO vibrate function
+            vibr_tasbih.vibrate(500); // Vibrate for 500 milliseconds 
             tasbihText.setText("لا إله إلا الله وحده لا شريك له له الملك و له الحمد و هو على كل شيئ قدير");
             principalLayout.setBackgroundColor(Color.rgb(121, 85, 72));
             incrementCounter.setText("نهاية الأذكار");
@@ -124,6 +124,7 @@ public class Counter extends Activity
         // Return to the main Activty
         else if (this.counter == 100)
         {
+            vibr_tasbih.vibrate(1000); //Vibrate for 1000 milliseconds  I choice 1000 to fill the difference --  end of tasbih
             // Opening the Main Activity
             Intent counterActivity = new Intent(Counter.this, MainActivity.class);
             startActivity(counterActivity);
