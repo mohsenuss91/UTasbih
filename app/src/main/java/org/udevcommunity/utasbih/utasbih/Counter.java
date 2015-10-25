@@ -9,6 +9,7 @@
 package org.udevcommunity.utasbih.utasbih;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -36,7 +37,8 @@ public class Counter extends Activity
     TextView counterView = null;       // TextView of the counter 'used to display the number in counter'
     Button incrementCounter = null;     // Incrementing Button for the counter
     LinearLayout principalLayout = null;   // principal layout 'used to set the color when rich 33,66,99,100 etc ...
-    Vibrator vibr_tasbih = (Vibrator) this.context.getSystemService(Context.VIBRATOR_SERVICE);  // create vibr_tasbih objet from vibrator class
+    Vibrator vibr_tasbih = null;  // create vibr_tasbih objet from vibrator class
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -48,6 +50,7 @@ public class Counter extends Activity
         counterView = (TextView) findViewById(R.id.counter);
         incrementCounter = (Button) findViewById(R.id.incCounter);
         principalLayout = (LinearLayout) findViewById(R.id.layoutCounter);
+        vibr_tasbih = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
         // onClick listener for the Incrementing Button "incrementCounter" to
         // execute the incrementing function "incCounterBasic()"

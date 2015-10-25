@@ -5,8 +5,6 @@
     android:weightSum="1"
     android:background="#218DE3"
     android:id="@+id/layoutCounter">
-
-    <uses-permission android:name="android.permission.VIBRATE"/>
     
     <TextView
         android:layout_width="wrap_content"
