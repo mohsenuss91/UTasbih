@@ -32,12 +32,15 @@ import android.os.Vibrator;
  */
 public class Counter extends Activity
 {
+    int mode;
     int counter = 0;                // counter used to stock the number of tasbih
     TextView tasbihText = null;     // Text of Tasbih ex: 'الحمد لله'
     TextView counterView = null;       // TextView of the counter 'used to display the number in counter'
     Button incrementCounter = null;     // Incrementing Button for the counter
     LinearLayout principalLayout = null;   // principal layout 'used to set the color when rich 33,66,99,100 etc ...
     Vibrator vibr_tasbih = null;  // create vibr_tasbih objet from vibrator class
+
+    UTasbihSQLiteHelper database = null;  // Database
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -52,19 +55,49 @@ public class Counter extends Activity
         principalLayout = (LinearLayout) findViewById(R.id.layoutCounter);
         vibr_tasbih = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
+        database = new UTasbihSQLiteHelper(this);
+
+        // getting the parameter of mode
+        Intent intent = getIntent();
+        mode = intent.getIntExtra("mode",1);
+
+        // initialize the activity according to the mode
+        initActivity(mode);
+
         // onClick listener for the Incrementing Button "incrementCounter" to
         // execute the incrementing function "incCounterBasic()"
         incrementCounter.setOnClickListener(new View.OnClickListener()
         {
             @Override
-            public void onClick(View v)
-            {
-                //TODO verify the mode of tasbih (Salat is token as default)
+            public void onClick(View v) {
+                if (mode == 1)
+                {
+                    // call the incCounterSalat function
+                    incCounterSalat();
+                }
+                else
+                {
+                    // call the incCounterBasic function
+                    incCounterBasic();
+                }
 
-                // call the incCounterSalat function
-                incCounterSalat();
             }
         });
+    }
+
+
+    // If we exit the activity
+    @Override
+    public void onStop()
+    {
+        super.onStop();
+
+        if (mode != 1) // if we are in free style mode
+        {
+            database.addStat(mode, (counter%100)); // we add the rest of Devision (counter / 100) Because we execute addStat every time counter rich a 100k
+            counter = 0;
+            this.counterView.setText("0");
+        }
     }
 
     @Override
@@ -92,6 +125,25 @@ public class Counter extends Activity
         return super.onOptionsItemSelected(item);
     }
 
+    public void initActivity(int mode)
+    {
+        switch (mode) {
+            case 1:
+                tasbihText.setText("سبحان الله");
+                break;
+            case 2:
+                tasbihText.setText("سبحان الله");
+                break;
+            case 3:
+                tasbihText.setText("الحمد لله");
+                break;
+            case 4:
+                tasbihText.setText("الله أكبر");
+                break;
+        }
+
+    }
+
     /**
      * incCounterSalat.
      *
@@ -107,7 +159,7 @@ public class Counter extends Activity
         // Conditions to set the Text+Backgtound when rich 33,66,99,100 .
         if (this.counter == 33)
         {
-            vibr_tasbih.vibrate(500); // Vibrate for 500 milliseconds 
+            vibr_tasbih.vibrate(500); // Vibrate for 500 milliseconds
             tasbihText.setText("الحمد لله");
             principalLayout.setBackgroundColor(Color.rgb(103, 58, 183));
         }
@@ -120,7 +172,7 @@ public class Counter extends Activity
         else if (this.counter == 99)
         {
             vibr_tasbih.vibrate(500); // Vibrate for 500 milliseconds 
-            tasbihText.setText("لا إله إلا الله وحده لا شريك له له الملك و له الحمد و هو على كل شيئ قدير");
+            tasbihText.setText("لا إله إلا الله وحده لا شريك له ,له الملك و له الحمد و هو على كل شيئ قدير");
             principalLayout.setBackgroundColor(Color.rgb(121, 85, 72));
             incrementCounter.setText("نهاية الأذكار");
         }
@@ -128,11 +180,29 @@ public class Counter extends Activity
         else if (this.counter == 100)
         {
             vibr_tasbih.vibrate(1000); //Vibrate for 1000 milliseconds  I choice 1000 to fill the difference --  end of tasbih
+
+            database.addStat(mode, 1); // add 1 to database
+
             // Opening the Main Activity
             Intent counterActivity = new Intent(Counter.this, MainActivity.class);
             startActivity(counterActivity);
         }
 
+        // Incrementing the counter
+        this.counter++;
+
+        // Set the new value of counter to the Textview "counterView"
+        this.counterView.setText(Integer.toString(this.counter));
+    }
+
+    //
+    public void incCounterBasic()
+    {
+        if ((this.counter % 100) == 0 && this.counter > 0)
+        {
+            vibr_tasbih.vibrate(500); //Vibrate for 1000 milliseconds  I choice 1000 to fill the difference --  end of tasbih
+            database.addStat(mode, 100); // add 100 to database
+        }
         // Incrementing the counter
         this.counter++;
 

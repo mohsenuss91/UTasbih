@@ -8,12 +8,20 @@
 package org.udevcommunity.utasbih.utasbih;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.List;
 
 /**
  * MainActivity
@@ -27,15 +35,34 @@ import android.widget.Button;
  */
 public class MainActivity extends AppCompatActivity
 {
+    UTasbihSQLiteHelper database = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         Button Go = (Button) findViewById(R.id.Go); // a test button to go to Counter activity
+        Button mode2 = (Button) findViewById(R.id.mode2);
+        Button mode3 = (Button) findViewById(R.id.mode3);
+        Button mode4 = (Button) findViewById(R.id.mode4);
+        TextView textView = (TextView) findViewById(R.id.textView);
+
+        database = new UTasbihSQLiteHelper(this);
+
+        // Getting data from the DataBase as object (will be used for the graph)
+        List<DayInfo> table = database.getAllInfos(1);
+        for (int i = 0; i < table.size(); i++)  textView.setText(textView.getText() + table.get(i).toString());
+
+        table = database.getAllInfos(2);
+        for (int i = 0; i < table.size(); i++)  textView.setText(textView.getText() + table.get(i).toString());
+
+        table = database.getAllInfos(3);
+        for (int i = 0; i < table.size(); i++)  textView.setText(textView.getText() + table.get(i).toString());
+
+        table = database.getAllInfos(4);
+        for (int i = 0; i < table.size(); i++)  textView.setText(textView.getText() + table.get(i).toString());
 
         // listener for the test Button 'Go' to Open Counter Activity
         Go.setOnClickListener(new View.OnClickListener() {
@@ -43,7 +70,35 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View v) {
                 // Opening the Counter Activity
                 Intent counterActivity = new Intent(MainActivity.this, Counter.class);
-                // TODO - Sending the parameter of mode of tasbih to the Counter Activity
+                counterActivity.putExtra("mode",1); // Sending the parameter of mode of tasbih to the Counter Activity
+
+                startActivity(counterActivity);
+            }
+        });
+        mode2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Opening the Counter Activity
+                Intent counterActivity = new Intent(MainActivity.this, Counter.class);
+                counterActivity.putExtra("mode",2); // Sending the parameter of mode of tasbih to the Counter Activity
+                startActivity(counterActivity);
+            }
+        });
+        mode3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Opening the Counter Activity
+                Intent counterActivity = new Intent(MainActivity.this, Counter.class);
+                counterActivity.putExtra("mode",3); // Sending the parameter of mode of tasbih to the Counter Activity
+                startActivity(counterActivity);
+            }
+        });
+        mode4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Opening the Counter Activity
+                Intent counterActivity = new Intent(MainActivity.this, Counter.class);
+                counterActivity.putExtra("mode",4); // Sending the parameter of mode of tasbih to the Counter Activity
                 startActivity(counterActivity);
             }
         });

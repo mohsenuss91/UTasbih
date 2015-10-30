@@ -15,6 +15,37 @@
         android:text="Salat (Just Test Button)"
         android:id="@+id/Go"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="98dp" />
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="سبحان الله"
+        android:id="@+id/mode2"
+        android:layout_below="@+id/Go"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="الحمد لله"
+        android:id="@+id/mode3"
+        android:layout_below="@+id/mode2"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="الله أكبر"
+        android:id="@+id/mode4"
+        android:layout_below="@+id/mode3"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
