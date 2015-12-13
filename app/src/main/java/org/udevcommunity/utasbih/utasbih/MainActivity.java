@@ -8,18 +8,13 @@
 package org.udevcommunity.utasbih.utasbih;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -48,6 +43,7 @@ public class MainActivity extends AppCompatActivity
         Button mode3 = (Button) findViewById(R.id.mode3);
         Button mode4 = (Button) findViewById(R.id.mode4);
         TextView textView = (TextView) findViewById(R.id.textView);
+        Button analytics = (Button) findViewById(R.id.analytics);
 
         database = new UTasbihSQLiteHelper(this);
 
@@ -102,7 +98,19 @@ public class MainActivity extends AppCompatActivity
                 startActivity(counterActivity);
             }
         });
+
+        analytics.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void  onClick(View v){
+                // Opening the Counter Activity
+                Intent analyticsActivity = new Intent(MainActivity.this, Analytics.class);
+                startActivity(analyticsActivity);
+            }
+        }
+
+        );
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)

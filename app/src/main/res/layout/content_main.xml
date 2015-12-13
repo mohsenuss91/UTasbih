@@ -48,4 +48,11 @@
         android:id="@+id/mode4"
         android:layout_below="@+id/mode3"
         android:layout_centerHorizontal="true" />
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/analyticsBtn"
+            android:id="@+id/analytics"
+            android:layout_above="@+id/textView"
+            android:layout_centerHorizontal="true"/>
 </RelativeLayout>
