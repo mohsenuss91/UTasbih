@@ -10,16 +10,16 @@ package org.udevcommunity.utasbih.utasbih;
  * @license :
  * @link : https://github.com/ztickm/UTasbih
  */
-import java.sql.Date;
-import java.util.LinkedList;
-import java.util.List;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+
+import java.sql.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 public class UTasbihSQLiteHelper extends SQLiteOpenHelper {
 
@@ -141,6 +141,7 @@ add,delete,update,get function
             return null;
         }
 
+        cursor.close();
         // 5. return info
         return info;
     }
@@ -171,6 +172,8 @@ add,delete,update,get function
             } while (cursor.moveToNext());
         }
 
+        db.close();
+        cursor.close();
         // return infos
         return infos;
     }

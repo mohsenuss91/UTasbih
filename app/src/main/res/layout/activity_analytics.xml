@@ -12,36 +12,29 @@
 		android:id="@+id/Layout"
 		tools:context="org.udevcommunity.utasbih.utasbih.Analytics">
 
+	<ViewFlipper xmlns:android="http://schemas.android.com/apk/res/android"
+				 android:id="@+id/charts_flipper"
+				 android:layout_width="match_parent"
+				 android:layout_height="match_parent"
+				 android:orientation="vertical" >
 
-	<LinearLayout
-			android:orientation="vertical"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_gravity="center_horizontal"
-			android:layout_weight="0.5"
-			android:id="@+id/salatTasbihChartLayout">
-
-		<com.github.mikephil.charting.charts.BarChart
-				android:id="@+id/salatTasbihChart"
+		<include
+				android:id="@+id/salatTasbihAnalytics"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
-		/>
+				android:layout_gravity="center_horizontal"
+				layout="@layout/salat_mode_chart" >
+		</include>
 
-	</LinearLayout>
-
-	<LinearLayout
-			android:orientation="vertical"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
-			android:layout_weight="0.5"
-			android:id="@+id/freeModeTasbihLayout">
-
-		<com.github.mikephil.charting.charts.LineChart
-				android:id="@+id/freeModeTasbihChart"
+		<include
+				android:id="@+id/freeModeTasbihAnalytics"
 				android:layout_width="match_parent"
-				android:layout_height="match_parent" />
+				android:layout_height="match_parent"
+				android:layout_gravity="center_horizontal"
+				layout="@layout/free_mode_chart" >
+		</include>
 
+	</ViewFlipper>
 
-	</LinearLayout>
 
 </LinearLayout>

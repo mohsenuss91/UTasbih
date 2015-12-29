@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         Button Go = (Button) findViewById(R.id.Go); // a test button to go to Counter activity
         Button mode2 = (Button) findViewById(R.id.mode2);
         Button mode3 = (Button) findViewById(R.id.mode3);

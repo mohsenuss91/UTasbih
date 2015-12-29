@@ -24,7 +24,9 @@
                 android:name=".Counter"
                 android:label="@string/app_name">
         </activity>
-        <activity android:name=".Analytics">
+        <activity android:name=".Analytics"
+        android:configChanges="orientation">
+
         </activity>
     </application>
 
