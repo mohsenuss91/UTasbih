@@ -8,9 +8,6 @@ package org.udevcommunity.utasbih.utasbih.notification;
 
         import java.util.Calendar;
 
-/**
- * Created by acer on 05/11/2015.
- */
 public class BootReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -24,7 +21,7 @@ public class BootReceiver extends BroadcastReceiver {
             Intent intet = new Intent(context, AlarmReceiver.class);
             PendingIntent pendintet = PendingIntent.getBroadcast(context, 0, intet, PendingIntent.FLAG_UPDATE_CURRENT);
             AlarmManager mn = (AlarmManager) context.getSystemService(context.ALARM_SERVICE);
-            mn.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 1000*60*((60*3)+45), pendintet);
+            mn.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 1000*60, pendintet);
         }
     }
 }

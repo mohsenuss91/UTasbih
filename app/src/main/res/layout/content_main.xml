@@ -6,46 +6,40 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/activity_main" tools:context=".MainActivity">
+    app:layout_behavior="@string/appbar_scrolling_view_behavior" tools:showIn="@layout/app_bar_main"
+    tools:context=".MainActivity"
+    android:padding="0dp">
 
-    <Button
+    <ListView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Salat (Just Test Button)"
-        android:id="@+id/Go"
+        android:layout_height="280dp"
+        android:id="@+id/list1"
+        android:foregroundGravity="bottom"
+        android:layout_marginTop="230dp"
+
+        android:layout_alignParentLeft="true"
+        android:textDirection="rtl"
+        android:layout_alignParentStart="true"
+        android:padding="10dp"></ListView>
+
+    <ImageView
+        android:layout_width="500dp"
+        android:layout_height="200dp"
+        android:id="@+id/imageView"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:foregroundGravity="top"
+        android:background="@drawable/tasbih"
+        android:contentDescription="Home"
+        android:padding="0dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="سبحان الله"
-        android:id="@+id/mode2"
-        android:layout_below="@+id/Go"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="الحمد لله"
-        android:id="@+id/mode3"
-        android:layout_below="@+id/mode2"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="الله أكبر"
-        android:id="@+id/mode4"
-        android:layout_below="@+id/mode3"
-        android:layout_centerHorizontal="true" />
+        android:text="اختيار نوع الاذكار"
+        android:id="@+id/adhkarTypeTV"
+        android:layout_below="@+id/imageView"
+        android:layout_centerHorizontal="true"
+        android:textColor="#26b506"
+        android:textSize="30dp" />
 </RelativeLayout>

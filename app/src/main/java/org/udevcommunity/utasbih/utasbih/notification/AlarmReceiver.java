@@ -13,9 +13,7 @@ package org.udevcommunity.utasbih.utasbih.notification;
         import org.udevcommunity.utasbih.utasbih.MainActivity;
         import org.udevcommunity.utasbih.utasbih.R;
 
-/**
- * Created by Taym on 01/11/2015.
- */
+
 public class AlarmReceiver extends BroadcastReceiver {
 
 
@@ -50,9 +48,9 @@ public class AlarmReceiver extends BroadcastReceiver {
         mNotifyBuilder = new NotificationCompat.Builder(
                 context);
         mNotifyBuilder.setSmallIcon(R.mipmap.ic_launcher);
-        mNotifyBuilder.setTicker("Utasbih");
-        mNotifyBuilder.setContentTitle("Test");
-        mNotifyBuilder.setContentText("This is test");
+        mNotifyBuilder.setTicker("UTasbih");
+        mNotifyBuilder.setContentTitle("UTasbih");
+        mNotifyBuilder.setContentText("تذكير: هل سبحت اليوم");
         mNotifyBuilder.setSound(alarmSound);
         mNotifyBuilder.setAutoCancel(true);
         mNotifyBuilder.setWhen(when);
