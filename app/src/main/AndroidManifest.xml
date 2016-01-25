@@ -3,6 +3,8 @@
     package="org.udevcommunity.utasbih.utasbih" >
 
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:allowBackup="true"
@@ -33,6 +35,16 @@
             android:label="@string/title_activity_analytics"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
+
+        <receiver android:name=".notification.AlarmReceiver" />
+        <receiver
+            android:name=".notification.BootReceiver"
+            android:enabled="true"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
