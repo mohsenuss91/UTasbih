@@ -18,7 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.os.Vibrator;
 /**
@@ -38,7 +38,7 @@ public class CounterActivity extends Activity
     TextView tasbihText = null;     // Text of Tasbih ex: 'الحمد لله'
     TextView counterView = null;       // TextView of the counter 'used to display the number in counter'
     Button incrementCounter = null;     // Incrementing Button for the counter
-    LinearLayout principalLayout = null;   // principal layout 'used to set the color when rich 33,66,99,100 etc ...
+    RelativeLayout principalLayout = null;   // principal layout 'used to set the color when rich 33,66,99,100 etc ...
     Vibrator vibr_tasbih = null;  // create vibr_tasbih objet from vibrator class
     SharedPreferences sharedPreferences;
     Boolean vibrationOn;
@@ -56,7 +56,7 @@ public class CounterActivity extends Activity
         tasbihText = (TextView) findViewById(R.id.textTasbih);
         counterView = (TextView) findViewById(R.id.counter);
         incrementCounter = (Button) findViewById(R.id.incCounter);
-        principalLayout = (LinearLayout) findViewById(R.id.layoutCounter);
+        principalLayout = (RelativeLayout) findViewById(R.id.layoutCounter);
         vibr_tasbih = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
         database = new UTasbihSQLiteHelper(this);
@@ -68,27 +68,22 @@ public class CounterActivity extends Activity
         // initialize the activity according to the mode
         initActivity(mode);
 
-        // onClick listener for the Incrementing Button "incrementCounter" to
-        // execute the incrementing function "incCounterBasic()"
-        incrementCounter.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v) {
-                if (mode == 1)
-                {
-                    // call the incCounterSalat function
-                    incCounterSalat();
-                }
-                else
-                {
-                    // call the incCounterBasic function
-                    incCounterBasic();
-                }
-
-            }
-        });
         sharedPreferences = this.getSharedPreferences(PREF_NAME, 0);
         vibrationOn = sharedPreferences.getBoolean("vibration", false);
+    }
+
+    // onClick method for incrementing the tasbeeh number
+    public void onBackgroundClick(View v){
+        if (mode == 1)
+        {
+            // call the incCounterSalat function
+            incCounterSalat();
+        }
+        else
+        {
+            // call the incCounterBasic function
+            incCounterBasic();
+        }
     }
 
 
