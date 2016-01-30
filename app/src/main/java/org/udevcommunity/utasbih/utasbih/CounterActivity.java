@@ -55,7 +55,7 @@ public class CounterActivity extends Activity
         // getting Views from the resources
         tasbihText = (TextView) findViewById(R.id.textTasbih);
         counterView = (TextView) findViewById(R.id.counter);
-        incrementCounter = (Button) findViewById(R.id.incCounter);
+
         principalLayout = (RelativeLayout) findViewById(R.id.layoutCounter);
         vibr_tasbih = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 

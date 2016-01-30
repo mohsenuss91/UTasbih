@@ -16,10 +16,11 @@ import com.github.mikephil.charting.data.LineDataSet;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.GestureDetector;
-import android.view.MotionEvent;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ViewFlipper;
 
@@ -75,6 +76,7 @@ public class AnalyticsActivity extends AppCompatActivity {
 
 
         mFlipper = (ViewFlipper) findViewById(R.id.charts_flipper);
+        FloatingActionButton flippBtn = (FloatingActionButton) findViewById(R.id.fab);
         //retrieve tasbih data from the database
         database = new UTasbihSQLiteHelper(this);
 
@@ -113,26 +115,19 @@ public class AnalyticsActivity extends AppCompatActivity {
         freeModeChart.invalidate();
         setfreeModeChartxAxis ();
 
-        //gesture detector to switch between different Analytics mode
-        // by a fling move
-        mGestureDetector = new GestureDetector(this,
-                new GestureDetector.SimpleOnGestureListener() {
-                    @Override
-                    public boolean onFling(MotionEvent e1, MotionEvent e2,
-                                           float velocityX, float velocityY) {
-                        if (velocityX < NEGATIVE_VELOCITY) {
-                            mFlipper.showPrevious();
-                        }
-                        return true;
-                    }
-                });
+
+        //flip between the chart by the floating button and the ViewFlipper
+         flippBtn.setOnClickListener(
+                 new View.OnClickListener() {
+                     public void onClick(View v) {
+                         mFlipper.showPrevious();
+                     }
+                 }
+         );
 
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        return mGestureDetector.onTouchEvent(event);
-    }
+
 
     /**
      * getSalatChartXAxisValues
