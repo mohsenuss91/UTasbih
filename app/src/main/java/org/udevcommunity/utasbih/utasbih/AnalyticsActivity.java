@@ -230,7 +230,7 @@ public class AnalyticsActivity extends AppCompatActivity {
 
         for(int idx=0;idx<limitLinesLabel.length;idx++){
 
-            LimitLine tempLimitLine = new LimitLine(idx+1, limitLinesLabel[idx]);
+            LimitLine tempLimitLine = new LimitLine(idx+1, null);
             tempLimitLine.setLineColor(Color.RED);
             tempLimitLine.setLineWidth(2f);
             tempLimitLine.setTextColor(Color.BLACK);
