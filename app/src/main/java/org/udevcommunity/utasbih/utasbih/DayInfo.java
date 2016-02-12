@@ -23,7 +23,7 @@ public class DayInfo {
         return Integer.toString(getId()) + "/" + Integer.toString(getMode()) + "/" + getDay().toString() + "/" + Integer.toString(getNumber()) + "\n";
     }
 
-    // Constuctors
+    // Constuctors //TODO SAFELY Remove the unused stuff, like this constructor
     public DayInfo()
     {
 

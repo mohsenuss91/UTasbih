@@ -47,6 +47,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         mNotifyBuilder = new NotificationCompat.Builder(
                 context);
+        //TODO put following configurables into a config Class
         mNotifyBuilder.setSmallIcon(R.mipmap.ic_launcher);
         mNotifyBuilder.setTicker("UTasbih");
         mNotifyBuilder.setContentTitle("UTasbih");

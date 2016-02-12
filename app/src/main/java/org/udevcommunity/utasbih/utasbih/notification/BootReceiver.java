@@ -21,7 +21,8 @@ public class BootReceiver extends BroadcastReceiver {
             Intent intet = new Intent(context, AlarmReceiver.class);
             PendingIntent pendintet = PendingIntent.getBroadcast(context, 0, intet, PendingIntent.FLAG_UPDATE_CURRENT);
             AlarmManager mn = (AlarmManager) context.getSystemService(context.ALARM_SERVICE);
-            mn.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 1000*60, pendintet);
+            //TODO put the " 1000*60*((60*3)+45)" into a config Class
+            mn.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),  1000*60*((60*3)+45), pendintet);
         }
     }
 }

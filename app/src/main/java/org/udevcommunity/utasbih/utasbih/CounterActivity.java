@@ -12,6 +12,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
@@ -37,7 +38,7 @@ public class CounterActivity extends Activity
     int counter = 0;                // counter used to stock the number of tasbih
     TextView tasbihText = null;     // Text of Tasbih ex: 'الحمد لله'
     TextView counterView = null;       // TextView of the counter 'used to display the number in counter'
-    Button incrementCounter = null;     // Incrementing Button for the counter
+   // Button incrementCounter = null;     // Incrementing Button for the counter
     RelativeLayout principalLayout = null;   // principal layout 'used to set the color when rich 33,66,99,100 etc ...
     Vibrator vibr_tasbih = null;  // create vibr_tasbih objet from vibrator class
     SharedPreferences sharedPreferences;
@@ -51,7 +52,7 @@ public class CounterActivity extends Activity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.counter_activity);
-
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         // getting Views from the resources
         tasbihText = (TextView) findViewById(R.id.textTasbih);
         counterView = (TextView) findViewById(R.id.counter);
@@ -175,23 +176,23 @@ public class CounterActivity extends Activity
             vibrateTasbih(500, vibrationOn); // Vibrate for 500 milliseconds
             tasbihText.setText("لا إله إلا الله وحده لا شريك له ,له الملك و له الحمد و هو على كل شيئ قدير");
             principalLayout.setBackgroundColor(Color.rgb(121, 85, 72));
-            incrementCounter.setText("نهاية الأذكار");
+            //incrementCounter.setText("نهاية الأذكار");
         }
         // Return to the main Activty
         else if (this.counter == 100)
-        {
-            vibrateTasbih(1000, vibrationOn); //Vibrate for 1000 milliseconds  I choice 1000 to fill the difference --  end of tasbih
+        {   //TODO Prevent the counter to increase to 101 and 102
+            vibrateTasbih(1000, vibrationOn); //Vibrate for 1000 milliseconds  --  end of tasbih
 
             database.addStat(mode, 1); // add 1 to database
 
-            // Opening the Main Activity
+            // Opening the Main Activity TODO Change instead to close actual activity, since this main is already alive behind
             Intent counterActivity = new Intent(CounterActivity.this, MainActivity.class);
             startActivity(counterActivity);
         }
 
         // Incrementing the counter
         this.counter++;
-
+        //TODO Prevent the counter to increase to 101 and 102 : Some scope stuff has to change?
         // Set the new value of counter to the Textview "counterView"
         this.counterView.setText(Integer.toString(this.counter));
     }

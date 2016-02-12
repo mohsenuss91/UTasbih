@@ -8,6 +8,7 @@
 package org.udevcommunity.utasbih.utasbih;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -43,67 +44,8 @@ public class MainActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        /*
-        Button SalatButton = (Button) findViewById(R.id.SalatButton); // a test button to go to CounterActivity activity
-        Button mode2 = (Button) findViewById(R.id.mode2);
-        Button mode3 = (Button) findViewById(R.id.mode3);
-        Button mode4 = (Button) findViewById(R.id.mode4);
-        */
-        //TextView salatType = (TextView) findViewById(R.id.salatTypeTV);
-
-        /*database = new UTasbihSQLiteHelper(this);
-
-        // Getting data from the DataBase as object (will be used for the graph)
-        List<DayInfo> table = database.getAllInfos(1);
-        for (int i = 0; i < table.size(); i++)  textView.setText(textView.getText() + table.get(i).toString());
-
-        table = database.getAllInfos(2);
-        for (int i = 0; i < table.size(); i++)  textView.setText(textView.getText() + table.get(i).toString());
-
-        table = database.getAllInfos(3);
-        for (int i = 0; i < table.size(); i++)  textView.setText(textView.getText() + table.get(i).toString());
-
-        table = database.getAllInfos(4);
-        for (int i = 0; i < table.size(); i++)  textView.setText(textView.getText() + table.get(i).toString());
-        */
-        // listener for the test Button 'Go' to Open CounterActivity Activity
-        /*SalatButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Opening the CounterActivity Activity
-
-            }
-        });
-        mode2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Opening the CounterActivity Activity
-                Intent counterActivity = new Intent(MainActivity.this, CounterActivity.class);
-                counterActivity.putExtra("mode",2); // Sending the parameter of mode of tasbih to the CounterActivity Activity
-                startActivity(counterActivity);
-            }
-        });
-        mode3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Opening the CounterActivity Activity
-                Intent counterActivity = new Intent(MainActivity.this, CounterActivity.class);
-                counterActivity.putExtra("mode",3); // Sending the parameter of mode of tasbih to the CounterActivity Activity
-                startActivity(counterActivity);
-            }
-        });
-        mode4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Opening the CounterActivity Activity
-                Intent counterActivity = new Intent(MainActivity.this, CounterActivity.class);
-                counterActivity.putExtra("mode",4); // Sending the parameter of mode of tasbih to the CounterActivity Activity
-                startActivity(counterActivity);
-            }
-        });
-        */
-        //TODO Hna bdat la copie
         //Declaration Layout et Adapter
         String [] tasbih ={"اذكار الصلاة","سبحان الله","الحمد لله","الله اكبر"};
         //create Adapter
@@ -116,9 +58,9 @@ public class MainActivity extends AppCompatActivity
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //TODO mode (salat,sbhan lahh,al  hamdo lahh,lahh akbar)
 
-                //String mode_Selected = String.valueOf(parent.getItemAtPosition(position));
+
+
                 Intent counterActivity;
                 switch (position){
                     case 0:
@@ -143,10 +85,6 @@ public class MainActivity extends AppCompatActivity
                         startActivity(counterActivity); break;
                 }
 
-            /*
-                Toast.makeText(MainActivity.this, mode_Selected, Toast.LENGTH_LONG).show();
-                Toast.makeText(MainActivity.this, position, Toast.LENGTH_LONG).show();
-            */
             }
 
 

@@ -4,33 +4,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:fitsSystemWindows="true"
-    tools:context="org.udevcommunity.utasbih.utasbih.AnalyticsActivity">
+    tools:context="org.udevcommunity.utasbih.utasbih.AnalyticsActivity"
+    android:id="@+id/coordinatorLayout">
 
-    <android.support.design.widget.AppBarLayout
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:theme="@style/AppTheme.AppBarOverlay">
 
-        <android.support.v7.widget.Toolbar android:id="@+id/toolbar"
-            android:layout_width="match_parent" android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary" app:popupTheme="@style/AppTheme.PopupOverlay" />
-
-    </android.support.design.widget.AppBarLayout>
-
+<!--     android:layout_below="@id/toolbar"
+-->
     <include layout="@layout/content_analytics"
-    android:layout_below="@id/toolbar"
+
              android:layout_height="match_parent"
              android:layout_width="match_parent"
              app:layout_behavior="@string/appbar_scrolling_view_behavior"
     />
 
     <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab"
+
+        android:id="@+id/fab"
         android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-            android:layout_margin="@dimen/fab_margin"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|left"
+        android:layout_marginTop="@dimen/fab_margin"
+        android:layout_marginBottom="@dimen/fab_margin"
+        android:layout_marginLeft="50dp"
         android:src="@drawable/ic_code_tags_white_24dp"
-        app:backgroundTint="#4BAF50"/>
+        app:fabSize="mini"
+        app:backgroundTint="#4BAF50" />
 
 </android.support.design.widget.CoordinatorLayout>

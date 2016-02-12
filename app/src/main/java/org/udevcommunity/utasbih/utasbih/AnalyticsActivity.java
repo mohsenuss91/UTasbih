@@ -16,7 +16,9 @@ import com.github.mikephil.charting.data.LineDataSet;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -50,6 +52,7 @@ public class AnalyticsActivity extends AppCompatActivity {
     private int TAHMID_MODE = 3;
     private int TAKBEER_MODE = 4;
 
+    //TODO put following configurables into a config Class
     private String MODE_TASBIH_LEGEND = "تسبيح";
     private String MODE_TAHMID_LEGEND = "تحميد";
     private String MODE_TAKBEER_LEGEND = "تكبير";
@@ -62,7 +65,7 @@ public class AnalyticsActivity extends AppCompatActivity {
 
     private BarChart salatChart;
     private String salatChartDescription = "تسابيح الصلوت المفروضة";
-
+    private CoordinatorLayout coordinatorLayout;
     private LineChart freeModeChart;
 
     private String salatChartDataDescritpion = "عدد التسبيح للصلوات المفروضة";
@@ -72,7 +75,7 @@ public class AnalyticsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_analytics);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        final LinearLayout mainLayout = (LinearLayout) findViewById(R.id.Layout);
+        coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinatorLayout);
 
 
         mFlipper = (ViewFlipper) findViewById(R.id.charts_flipper);
@@ -108,6 +111,7 @@ public class AnalyticsActivity extends AppCompatActivity {
 
         //set the Lines for each mode
         freeModeChart.setData(getLineData(tasbihModeList, tahmidModeList,takbeerModeList));
+        //TODO Strings shouldn't be harcoded
         freeModeChart.setDescription("عدد التسابيح خارج الصلوات المفروضة");
         freeModeChart.setDescriptionPosition(500f,10f);
 
@@ -120,6 +124,7 @@ public class AnalyticsActivity extends AppCompatActivity {
          flippBtn.setOnClickListener(
                  new View.OnClickListener() {
                      public void onClick(View v) {
+                         Snackbar.make(coordinatorLayout, "معاينة نوع الأذكار التالي", Snackbar.LENGTH_LONG).show();
                          mFlipper.showPrevious();
                      }
                  }
