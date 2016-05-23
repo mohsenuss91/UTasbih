@@ -124,7 +124,7 @@ public class AnalyticsActivity extends AppCompatActivity {
          flippBtn.setOnClickListener(
                  new View.OnClickListener() {
                      public void onClick(View v) {
-                         Snackbar.make(coordinatorLayout, "معاينة نوع الأذكار التالي", Snackbar.LENGTH_LONG).show();
+                         Snackbar.make(coordinatorLayout, "معاينة نوع الأذكار التالي", Snackbar.LENGTH_SHORT).show();
                          mFlipper.showPrevious();
                      }
                  }

@@ -78,7 +78,9 @@ public class SettingsActivity extends Activity {
             @Override
             public void onClick(View v) {
                 editor.commit();
+
                 //TODO Kill actual activity and return to previous
+                finish();
             }
         });
     }

@@ -35,7 +35,8 @@ import android.os.Vibrator;
 public class CounterActivity extends Activity
 {
     int mode;
-    int counter = 0;                // counter used to stock the number of tasbih
+    int counter = 0;
+    int maxSalatTasbih = 100;// counter used to stock the number of tasbih
     TextView tasbihText = null;     // Text of Tasbih ex: 'الحمد لله'
     TextView counterView = null;       // TextView of the counter 'used to display the number in counter'
    // Button incrementCounter = null;     // Incrementing Button for the counter
@@ -179,20 +180,21 @@ public class CounterActivity extends Activity
             //incrementCounter.setText("نهاية الأذكار");
         }
         // Return to the main Activty
-        else if (this.counter == 100)
-        {   //TODO Prevent the counter to increase to 101 and 102
+        else if (this.counter == maxSalatTasbih)
+        {
             vibrateTasbih(1000, vibrationOn); //Vibrate for 1000 milliseconds  --  end of tasbih
 
             database.addStat(mode, 1); // add 1 to database
 
-            // Opening the Main Activity TODO Change instead to close actual activity, since this main is already alive behind
-            Intent counterActivity = new Intent(CounterActivity.this, MainActivity.class);
-            startActivity(counterActivity);
+            // Opening the Main Activity
+            // Intent counterActivity = new Intent(CounterActivity.this, MainActivity.class);
+            // startActivity(counterActivity);
+            finish();
         }
 
         // Incrementing the counter
-        this.counter++;
-        //TODO Prevent the counter to increase to 101 and 102 : Some scope stuff has to change?
+        if (this.counter < maxSalatTasbih ) this.counter++;
+
         // Set the new value of counter to the Textview "counterView"
         this.counterView.setText(Integer.toString(this.counter));
     }
