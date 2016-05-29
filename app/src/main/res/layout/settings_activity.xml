@@ -9,24 +9,32 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="0.5"
+        android:layoutDirection="rtl"
+
         >
     <Switch
+        android:gravity="right"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Vibration"
         android:id="@+id/vibration"
         android:checked="false"
+        android:text = "@string/vibration_check"
         android:layout_weight="0.3"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="20dp"
-        android:layout_marginRight="30dp" />
+        android:layout_marginRight="30dp"
+        android:layoutDirection="rtl"
+
+        />
 
     <Switch
+        android:layoutDirection="rtl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Notification"
+        android:text="@string/notification_check"
         android:id="@+id/notification"
         android:layout_gravity="center_horizontal"
+        android:gravity="right"
         android:layout_weight="0.3"
         android:checked="false"
         android:layout_marginLeft="30dp"
@@ -36,7 +44,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save Settings"
+        android:text="@string/save_settings"
         android:id="@+id/save"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.3"
@@ -50,7 +58,6 @@
             android:layout_gravity="center_horizontal" />
 
     </LinearLayout>
-
 
 
 </LinearLayout>
